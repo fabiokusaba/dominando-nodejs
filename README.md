@@ -45,3 +45,17 @@ com o padrão REST
 - yarn add prettier eslint-config-prettier eslint-plugin-prettier -D / npm install prettier eslint-config-prettier eslint-plugin-prettier -D
 - yarn eslint --fix src --ext .js /
 * O que é um ORM - 0701
+- Object Relational Mapper: abstração de banco de dados que tabelas se tornam classes
+- Migrations: controla as versões das tabelas/banco de dados, cada migration contém as instruções de criação, alteração e remoção de tabelas
+e colunas, permite manter a base sempre atualziada ordenada por data/hora, toda migração precisa ter up (criar) e down (deletar), cada
+migração deve manipular uma única tabela
+* Instalando e utilizando Sequelize - 0702
+- yarn add sequelize / npm install sequelize
+- yarn add sequelize-cli -D / npm install sequelize-cli -D
+- .sequelizerc: arquivo de configurações do sequelize
+- yarn add pg pg-hstore / npm install pg pg-hstore
+* Criando o model Customer - 0703
+- yarn sequelize migration:create --name=create-customers / npx sequelize migration:create --name=create-customers
+- yarn sequelize db:migrate / npx sequelize db:migrate
+- yarn sequelize db:migrate:undo:all / npx sequelize db:migrate:undo:all -> desfaz todas as migrações
+* Criando o model Contact - 0704
