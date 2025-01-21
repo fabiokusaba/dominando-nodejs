@@ -59,3 +59,33 @@ migração deve manipular uma única tabela
 - yarn sequelize db:migrate / npx sequelize db:migrate
 - yarn sequelize db:migrate:undo:all / npx sequelize db:migrate:undo:all -> desfaz todas as migrações
 * Criando o model Contact - 0704
+* Criando o model User - 0705
+* Carregando os modelos no projeto - 0706
+* Alterando modelos - 0707
+- remover uma coluna: o processo é ao contrário, ou seja, primeiro vamos remover e depois se a gente quiser refazer a gente vai adicionar a
+coluna novamente, então o up vai ser removeColumn e o down addColumn
+- adicionar uma coluna: processo inverso, ou seja, aqui no up nós vamos adicionar uma coluna e no down remover uma coluna
+- o postgres tem uma particularidade que quando a gente cria um enum dentro do sequelize, enum é um enumerador que só aceita valores pré
+definidos, ele cria um tipo personalizado enum_customers_status e o que acontece? Quando eu removo uma coluna e ela é do tipo enum o sequelize
+não tem a possibilidade ou não faz automaticamente a remoção desse tipo personalizado, para fazer a sua deleção vamos precisar executar comandos
+sql dentro da nossa migration
+* Preparando o playground - 0801
+* Selecionando atributos - 0802
+- dentro de qualquer método find no sequelize você pode abrir as chaves e utilizar o attributes onde você passa um array com os campos que você
+deseja mostrar, de outro modo você pode abrir um objeto e dentro dele passar no exclude um array com os campos que você não deseja exibir ou o
+include com os campos que você deseja exibir
+* Filtros (where) - 0803
+- as três formas de se escrever o find: findAll que vai buscar todos os registros, findOne seleciona o primeiro registro, findByPk para buscar
+um registro quando se sabe a chave primária
+- para fazer filtros no sql usamos o where, ele é escrito como se fosse mais uma propriedade dentro do find e podemos colocar as condições aqui
+dentro como se fossem um objeto
+- dentro do próprio sequelize a gente tem algumas formas de colocar operadores lógicos importando o Op, porém a sintaxe vai mudar um pouco, na
+própria documentação do sequelize temos um manual contendo todos os operadores disponíveis
+- é possível passar múltiplos campos
+* Inclusão (join) - 0804
+- um customer possui vários contatos lá dentro e vamos imaginar que queremos fazer o inner join, ou seja, não queremos listar apenas os customers
+mas também os seus contatos e como podemos fazer isso? Dentro do sequelize temos uma chave chamada include que é responsável por fazer o inner
+join entre as tabelas, podemos aqui colocar o model direto
+- podemos colocar cláusulas dentro do include como por exemplo where, vamos manter o array e dentro dele abriremos as chaves para passar um objeto
+- quando temos um inner join somente os customers que possuem contatos que serão exibidos, para voltarmos a opção do left outer join que é opcional
+temos que passar o required como false

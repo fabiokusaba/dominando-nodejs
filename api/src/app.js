@@ -7,6 +7,9 @@
 import express from "express";
 import routes from "./routes";
 
+// Importando o nosso loader e como seu nome é index para importá-lo basta fazer da seguinte forma:
+import "./database";
+
 // Classe para conter a lógica
 // Organizar todos os nossos arquivos em função de classe porque a própria arquitetura de uma classe sugere uma melhor
 // organização o que é mais interessante do que deixar espalhado em funções

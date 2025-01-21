@@ -1,3 +1,6 @@
+// Importando o nosso modelo Customer que vai ser o objeto que vai interagir com os métodos do sequelize
+import Customer from "../models/Customer";
+
 // Mock de dados
 let customers = [
   { id: 1, name: "Dev Samurai", site: "http://devsamurai.com.br" },
@@ -8,8 +11,13 @@ let customers = [
 // Criar uma classe e os métodos que vão responder a um tipo de chamada
 class CustomersController {
   // Listagem dos customers
-  index(req, res) {
-    return res.json(customers);
+  async index(req, res) {
+    const data = await Customer.findAll({
+      // Limitando os resultados para não deixar o banco de dados extremamente ocupado e tentar dar uma resposta mais rápida
+      limit: 1000,
+    });
+
+    return res.json(data);
   }
 
   // Recupera um customer
