@@ -89,3 +89,33 @@ join entre as tabelas, podemos aqui colocar o model direto
 - podemos colocar cláusulas dentro do include como por exemplo where, vamos manter o array e dentro dele abriremos as chaves para passar um objeto
 - quando temos um inner join somente os customers que possuem contatos que serão exibidos, para voltarmos a opção do left outer join que é opcional
 temos que passar o required como false
+* Ordenação (order) - 0805
+- dentro do sequelize nós temos uma opção de ordenação, relembrando os comandos sql nós temos: SELECT * FROM customers ORDER BY onde passamos o
+campo que desejamos ordenar, caso a gente não passe nenhum valor por padrão ele vai ordenar de forma ascendente ASC, quando forçamos colocando o
+DESC ele vai ordenar de forma descendente
+- no sequelize para trabalharmos com ordenação nós temos o order, ele funciona de uma forma bem similar ao where que já vimos mas você pode colocar
+ele diretamente em um array onde você irá colocar os campos
+* Paginação (limit e offset) - 0806
+- nós podemos limitar a quantidade de registros que vão ser disponibilizados pra gente, em banco de dados com grandes quantidades de registros uma
+consulta SELECT * FROM customers pode ferrar com o processamento da máquina então acaba sendo uma má prática, e podemos sanar esse problema com o
+uso do LIMIT passando uma quantidade de registros que queremos devolver para aquela consulta, por exemplo quero devolver 10 registros vou usar o
+LIMIT 10
+- O LIMIT também é utilizado para fazer paginação de registros dentro da web por conta desse mesmo problema que falamos anteriormente, então é uma
+boa prática a gente sempre limitar, depois que aplicamos o LIMIT temos a possibilidade de aplicar o OFFSET que é a parte de paginação então ele é
+basicamente o LIMIT vezes a página menos o limite
+* Funções de agregação (min, max, sum, count) - 0807
+- são funções que a gente pode fazer o count, min, max, avg, ou seja, são funções que calculam alguma coisa e um exemplo sql desse tipo de função
+seria SELECT count(*) FROM customers
+- quando vamos utilizar o max() precisamos passar aqui dentro a função de agregação e o parâmetro da coluna que eu quero contar
+- o sum() irá somar os dados de um campo inteiro, interessante utilizá-lo em cenários que temos idade, saldo
+* Escopos (scopes) - 0808
+- os escopos dentro do sequelize são consultas que você pode deixar pré criadas dentro do próprio model assim conseguimos facilitar e muito a nossa
+manutenção e criar consultas que elas sejam reutilizáveis em diversas situações
+- para a gente poder usar o nosso escopo antes de qualquer método find precisamos passá-lo
+- ou seja, dentro dos escopos podemos passar o sql que quisermos
+- podemos passar parâmetros e rodar códigos JS
+- a única ressalva é pra você tomar cuidado para não criar regras de negócio, por exemplo se não tiver no estoque faço tal coisa então as regras de
+negócio deixamos para uma outra camada, mas os escopos eles servem basicamente pra abstrair algumas consultas que normalmente fazem parte da
+inteligência de algum modelo
+- como a gente faz para dar merge em escopo? ou seja, a gente utiliza mais de um escopo de uma vez só e para isso posso colocar os escopos dentro de
+um array, só uma ressalva que não podemos manipular o mesmo campo em escopos diferentes
