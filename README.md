@@ -119,3 +119,28 @@ negócio deixamos para uma outra camada, mas os escopos eles servem basicamente 
 inteligência de algum modelo
 - como a gente faz para dar merge em escopo? ou seja, a gente utiliza mais de um escopo de uma vez só e para isso posso colocar os escopos dentro de
 um array, só uma ressalva que não podemos manipular o mesmo campo em escopos diferentes
+* Criação (insert) - 0809
+- para inserir um dado no banco chamamos o nosso model com o método create que vai criar um customer em função dos parâmetros que a gente passar, os
+parâmetros que a gente passar basicamente é um objeto com o nome dos campos
+* Atualização (update) - 0810
+- primeiro você precisa fazer uma busca retornando apenas um objeto e depois fazemos as devidas atualizações
+- depois que você recuperou o objeto através do findByPk ou findOne, usamos o método update para atualizar os dados
+- o método update funciona de forma análoga ao create com exceção que aqui você vai colocar os campos que você quer atualizar
+* Exclusão (delete) - 0811
+- a exclusão de um registro sempre se dá em cima de um objeto e para isso basta chamarmos o método destroy
+* Ganchos de execução (Hooks) - 0812
+- os hooks dentro do sequelize como o próprio nome já sugere significa ganchos
+- os ganchos sempre vem em função de um evento que você quer realizar
+* O que é uma arquitetura MVC - 0901
+- arquitetura de software é sobre organização, como as coisas são organizadas
+- arquitetura MVC (Model View Controller) é uma das arquiteturas mais utilizadas no mundo do desenvolvimento porque ele permite você separar em
+camadas ou separar especialistas pra fazer alguma coisa, ou seja, ele permite separar as camadas (lógica) da aplicação em especialidades, então
+sempre que você estiver trabalhando com MVC você vai receber uma requisição através de uma rota específica, a rota sempre deve apontar para uma
+classe controller e essa classe é o que vai encabeçar todo o processo, então as classes controllers elas basicamente contém a lógica de negócio
+ou regras de negócio, para ele conseguir trabalhar com essa camada de dados ele conta com a ajuda da camada model, camada que basicamente vai
+tratar diretamente com o banco de dados, vai chegar uma hora que você vai precisar expor esse dado pra alguém que fez a requisição nessa rota
+então no momento que o controller recebe as informações do model ele precisa renderizar, executar um método que dado um dado vindo do model ele
+retorna pra gente uma camada visual que normalmente vai ser um html ou json, essa camada visual normalmente roda um template engine, basicamente
+é uma biblioteca que por exemplo transforma uma determinada marcação que você colocar no seu texto/html em dados evitando com que você precise
+concatenar informações, então essa camada de visualização ela não conhece os dados e não conhece a nossa rota, ela simplesmente vai receber as
+informações que o controller passar 

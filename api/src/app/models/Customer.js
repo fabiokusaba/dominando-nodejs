@@ -35,6 +35,13 @@ class Customer extends Model {
           };
         }
       },
+      // Criando hooks
+      hooks: {
+        beforeValidate: (customer, options) => {
+          // Vamos imaginar que você quer setar o campo status para ARCHIVED antes do processo de validação
+          customer.status = "ARCHIVED";
+        }
+      },
       sequelize,
     });
   }
