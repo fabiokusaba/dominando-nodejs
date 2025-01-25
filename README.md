@@ -143,4 +143,11 @@ então no momento que o controller recebe as informações do model ele precisa 
 retorna pra gente uma camada visual que normalmente vai ser um html ou json, essa camada visual normalmente roda um template engine, basicamente
 é uma biblioteca que por exemplo transforma uma determinada marcação que você colocar no seu texto/html em dados evitando com que você precise
 concatenar informações, então essa camada de visualização ela não conhece os dados e não conhece a nossa rota, ela simplesmente vai receber as
-informações que o controller passar 
+informações que o controller passar
+* Criando o Controller Customer Part.1 - 0902
+- yarn add date-fns / npm install date-fns
+* Criando o Controller Customer Part.2 - 0903
+- yarn add yup / npm install yup
+- a validação vamos fazer via uma lib chamada yup, uma biblioteca que valida não o banco de dados em si mas ela valida o schema do request body
+então você monta um schema pra ela falando tudo o que o request body precisa ter e ela faz a validação
+* Criando o Controller Contact - 0904
