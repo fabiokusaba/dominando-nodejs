@@ -14,11 +14,11 @@ import Customer from "../models/Customer";
 import Contact from "../models/Contact";
 
 // Mock de dados
-let customers = [
-  { id: 1, name: "Dev Samurai", site: "http://devsamurai.com.br" },
-  { id: 2, name: "Google", site: "http://google.com" },
-  { id: 3, name: "UOL", site: "http://uol.com.br" }
-];
+// let customers = [
+//   { id: 1, name: "Dev Samurai", site: "http://devsamurai.com.br" },
+//   { id: 2, name: "Google", site: "http://google.com" },
+//   { id: 3, name: "UOL", site: "http://uol.com.br" }
+// ];
 
 // Criar uma classe e os métodos que vão responder a um tipo de chamada
 class CustomersController {

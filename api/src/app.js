@@ -5,6 +5,11 @@
 
 // Formato de imports mais usual
 import express from "express";
+
+// Importando middlewares
+// import authMiddleware from "./app/middlewares/auth";
+
+// Importando as rotas
 import routes from "./routes";
 
 // Importando o nosso loader e como seu nome é index para importá-lo basta fazer da seguinte forma:
@@ -26,6 +31,9 @@ class App {
   middlewares() {
     // Middleware que vai permitir trabalhar com json
     this.server.use(express.json());
+    this.server.use(express.urlencoded({ extended: false }));
+    // Adicionando auth middleware
+    // this.server.use(authMiddleware);
   }
 
   routes() {

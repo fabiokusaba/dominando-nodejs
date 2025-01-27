@@ -151,3 +151,50 @@ informações que o controller passar
 - a validação vamos fazer via uma lib chamada yup, uma biblioteca que valida não o banco de dados em si mas ela valida o schema do request body
 então você monta um schema pra ela falando tudo o que o request body precisa ter e ela faz a validação
 * Criando o Controller Contact - 0904
+* Criando o Controller User - 0905
+- yarn add bcryptjs / npm install bcryptjs
+* O que é um Middleware - 1001
+- são funções com acesso às requisições, respostas e a próxima função, então imagine como se fosse uma pilha em que você controla essa pilha e
+você pode acrescentar no meio dessa pilha, no lugar onde você quiser a sua função
+- imagine uma situação em que você está recebendo uma requisição você tem um middleware que pode ser do próprio express, de terceiros ou até mesmo
+o seu middleware que ele faz alguma coisa, no momento em que ele faz alguma coisa ele chama o next, função que autoriza para o próximo middleware
+executar, o próximo middleware executa e assim você vai ter uma execução em cascata até chegar no seu controller
+- então, os middlewares são essas funções que você pode inserir no meio do caminho da requisição até chegar no seu controller para que você possa
+controlar ou executar algo no meio do caminho
+* Criando um Middleware no Express - 1002
+- Dentro do express temos dois tipos de middlewares: globais e locais. Os middlewares globais eles atuam antes da gente chegar na rota, ou seja, eles
+são intermediários entre o acesso ao recurso e o recurso ser executado. Os middlewares locais você aponta em quais recursos você quer que o middleware
+execute e ele executa
+- Para mapearmos um middleware global dentro do express é muito fácil basta usarmos dentro do método use uma arrow function com os parâmetros req, res
+e next, como comentamos um middleware só completa a execução quando ele chama o próximo (next) então precisamos fazer uso do next para que ele possa
+chamar o próximo e assim continuar a execução
+- Os middlewares locais são basicamente funções que você pode criar para atuar em rotas específicas porque, por exemplo, nem toda rota que você tiver
+vai ter a questão de receber como parâmetro na query o name então podemos transformar em middlewares locais que basicamente é uma função, e para a gente
+poder vincular a rota a função basta colocarmos o nome da função entre o nome da rota e o (req, res)
+* Formas de se autenticar uma API - 1101
+- a autenticação no caso de APIs consiste basicamente em limitar alguns recursos (controllers) do acesso de estranhos (público), então para permitir o
+acesso a usuários específicos o método mais comum é usuário/senha e como uma API não possui "campos de digitação" é necessário repassar essas informações
+utilizando algumas estratégias
+- existem várias possibilidades de receber essa informação sendo as mais comuns: Basic Authentication, OAuth 1.0, OAuth 2.0, Token JWT
+- então, imagine que você tem um aplicativo e você abre uma comunicação com um controller Sessions onde você vai fazer um post passando alguns dados em
+formato json que basicamente seriam o email e a senha, a nossa API vai receber os dados fazer a verificação e devolver um token jwt caso a autenticação
+tenha sido realizada com sucesso
+- o token jwt basicamente é dividido em três partes: a primeira parte é a informação de headers como tipo de token, algoritmo, etc, a segunda parte são
+os dados que são chamados de payload, e por fim a assinatura que se refere aos dados e também aos headers, ou seja, ela é a garantia de que caso algum 
+dado tenha sido alterado ao longo do caminho/transição de dado entre o servidor e o aplicativo ele possa verificar e possa descartar essa informação
+* Criando o token de autenticação - 1102
+- yarn add jsonwebtoken / npm install jsonwebtoken
+* Validando o token de autenticação na API - 1103
+* Como funciona upload de arquivos e fotos - 1201
+* Configurando o Multer - 1202
+- yarn add multer / npm install multer
+* Criando o Controller Files - 1203
+* Configurando o Nodemailer e enviando emails no sistema - 1301
+- yarn add nodemailer / npm install nodemailer
+* Como funciona uma fila de execução - 1401
+- vamos imaginar o envio de email como uma operação custosa para o nosso sistema, uma operação custosa é uma operação que demanda muito processador, e
+essas atividades podem começar a se acumular dentro do servidor fazendo com que ele caia acontecendo o que chamamos de timeout, ou seja, ele demora tanto
+para executar que o outro lado que chamou aquela operação acha que ele morreu e por isso ele dá falha de conexão/desistindo
+- podemos lidar com essa situação delegando essa tarefa para um outro servidor especializado em executar tarefas e esse servidor vai empilhar em filas de
+execução, então o tempo de resposta que a sua aplicação precisa ter é só o tempo de escrita dentro daquele banco de dados de fila de execução que aquele
+outro processo vai fazer, é uma forma mais interessante de se trabalhar com processos pesados

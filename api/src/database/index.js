@@ -8,9 +8,10 @@ import config from "../config/database";
 import Customer from "../app/models/Customer";
 import Contact from "../app/models/Contact";
 import User from "../app/models/User";
+import File from "../app/models/File";
 
 // Os modelos eu carrego dentro de um array
-const models = [Customer, Contact, User];
+const models = [Customer, Contact, User, File];
 
 // Classe de configuração responsável por executar o método init de cada modelo
 class Database {
