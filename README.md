@@ -198,3 +198,14 @@ para executar que o outro lado que chamou aquela operação acha que ele morreu 
 - podemos lidar com essa situação delegando essa tarefa para um outro servidor especializado em executar tarefas e esse servidor vai empilhar em filas de
 execução, então o tempo de resposta que a sua aplicação precisa ter é só o tempo de escrita dentro daquele banco de dados de fila de execução que aquele
 outro processo vai fazer, é uma forma mais interessante de se trabalhar com processos pesados
+* Instalando a fila de execução no projeto - 1402
+- yarn add bee-queue / npm install bee-queue
+* Enviando emails por fila - 1403
+* Configuração (dotenv) - 1501
+- yarn add dotenv / npm install dotenv
+* Tratamento de erros - 1502
+- yarn add express-async-errors / npm install express-async-errors
+- yarn add youch / npm install youch
+* Monitoramento de erros - 1503
+- sentry.io
+- yarn add @sentry/node // npm install @sentry/node

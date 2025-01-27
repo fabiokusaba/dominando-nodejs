@@ -3,7 +3,12 @@ import {Op} from "sequelize";
 import {parseISO} from "date-fns";
 
 import User from "../models/User";
-import Mail from "../../lib/Mail";
+// import Mail from "../../lib/Mail";
+
+// Quando queremos processar uma fila a gente precisa importar o job e a queue
+import Queue from "../../lib/Queue";
+import DummyJob from "../jobs/DummyJob";
+import WelcomeEmailJob from "../jobs/WelcomeEmailJob";
 
 class UsersController {
   async index(req, res) {
@@ -130,12 +135,14 @@ class UsersController {
     const { id, name, email, file_id, createdAt, updatedAt } = await User.create(req.body);
 
     // No momento em que criamos um usuário vamos enviar um email
-    Mail.send({
-      to: email,
-      subject: "Bem vindo(a)!",
-      text: `Olá ${name}, bem-vindo(a) ao nosso sistema!`,
-    });
+    // Mail.send({
+    //   to: email,
+    //   subject: "Bem vindo(a)!",
+    //   text: `Olá ${name}, bem-vindo(a) ao nosso sistema!`,
+    // });
 
+    await Queue.add(DummyJob.key, { message: "Hello Jobs" });
+    await Queue.add(WelcomeEmailJob.key, { name, email });
 
     return res.status(201).json({ id, name, email, file_id, createdAt, updatedAt });
   }
